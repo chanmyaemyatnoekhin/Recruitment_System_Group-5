@@ -6,26 +6,30 @@ import java.sql.SQLException;
 
 public class dbConnection {
 	
-	private static Connection con = null;
-	private static String conStr = "jdbc:mysql://localhost:3306/recruitment_system";
-	private static String userName = "root";
-	private static String password = "";
-	
-	public static Connection getConnection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(conStr, userName, password);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return con;
-	}
+
+    private static final String URL = "jdbc:mysql://localhost:3306/recruitment_system";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
+
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Load MySQL driver
+        } catch (ClassNotFoundException e) {
+            System.err.println("MySQL JDBC Driver not found.");
+            e.printStackTrace();
+        }
+    }
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    }
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		 Connection connection = dbConnection.getConnection();
 		try {
-			if (connection != null || !connection.isClosed()) {
+			 Connection connection = dbConnection.getConnection();
+
+			if (connection != null && !connection.isClosed()) {
 				System.out.println("connection successfully.");
 			} else {
 			System.out.println("Connection Fail.");	
