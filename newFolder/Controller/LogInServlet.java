@@ -11,7 +11,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/LogIn_Servlet")
 public class LogInServlet extends HttpServlet {
@@ -64,8 +63,7 @@ public class LogInServlet extends HttpServlet {
 							if ("admin".equalsIgnoreCase(role)) {
 								response.sendRedirect("UserList.jsp");
 							} else {
-								HttpSession session = request.getSession();
-								session.setAttribute("loggedInEmail", email);
+								request.getSession().setAttribute("loggedInEmail", email);
 								response.sendRedirect("RecruitmentForm.jsp");
 							}
 						}

@@ -54,7 +54,7 @@ public class SubmitApplicationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
 
-		String uploadPath = "C:\\Group-5-Recruitment-System\\RecruitmentSystem\\uploadedFiles";
+		String uploadPath = "C:\\Group-5-Recruitment-System\\NewRecruitmentSystem\\uploadedFiles";
 //		String loginUserID = request.getParameter("userId");
 
 		String loginUserID = (String) request.getSession().getAttribute("userId");
